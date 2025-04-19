@@ -1,36 +1,265 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+persuratan-dlh
+├─ app
+│  ├─ api
+│  │  ├─ auth
+│  │  │  ├─ login
+│  │  │  │  └─ route.js
+│  │  │  ├─ logout
+│  │  │  │  └─ route.js
+│  │  │  ├─ me
+│  │  │  │  └─ route.js
+│  │  │  └─ register
+│  │  │     └─ route.js
+│  │  ├─ classifications
+│  │  │  └─ route.js
+│  │  └─ records
+│  │     ├─ route.js
+│  │     ├─ type
+│  │     │  └─ [documentType]
+│  │     │     └─ route.js
+│  │     └─ [id]
+│  │        └─ route.js
+│  ├─ auth
+│  │  └─ login
+│  │     └─ page.js
+│  ├─ components
+│  │  ├─ atoms
+│  │  │  └─ Table
+│  │  │     ├─ TableCell.jsx
+│  │  │     └─ TableHeaderCell.jsx
+│  │  ├─ LoginForm.js
+│  │  ├─ molecules
+│  │  │  ├─ CardRecord.jsx
+│  │  │  ├─ DeleteButton.jsx
+│  │  │  ├─ EditButton.jsx
+│  │  │  └─ TableRow.jsx
+│  │  ├─ organism
+│  │  │  ├─ PageHeader.jsx
+│  │  │  └─ RecordsTable.jsx
+│  │  ├─ ProtectedRoute.js
+│  │  ├─ Register.js
+│  │  ├─ SideNavbar.js
+│  │  ├─ templates
+│  │  │  └─ RecordsPageTemplate.jsx
+│  │  └─ ToastProvider.jsx
+│  ├─ config
+│  │  └─ documentTypes.js
+│  ├─ dashboard
+│  │  ├─ beritaacara
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ layout.js
+│  │  ├─ page.js
+│  │  ├─ suratkeluar
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ suratketerangan
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ suratmasuk
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ surattugas
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  └─ page.js
+│  │  └─ [id]
+│  │     └─ page.jsx
+│  ├─ favicon.ico
+│  ├─ globals.css
+│  ├─ hooks
+│  │  ├─ useAuth.js
+│  │  └─ useCurrentUser.js
+│  ├─ layout.js
+│  ├─ lib
+│  │  ├─ formatDate.js
+│  │  ├─ middleware.js
+│  │  ├─ prisma.js
+│  │  └─ romanMonths.js
+│  ├─ page.js
+│  └─ protected
+│     └─ page.js
+├─ arsip-code_rows.csv
+├─ jsconfig.json
+├─ next.config.js
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.js
+├─ prisma
+│  ├─ migrations
+│  │  ├─ 20241224071150_init
+│  │  │  └─ migration.sql
+│  │  ├─ 20241224071326_init
+│  │  │  └─ migration.sql
+│  │  ├─ 20241224072128_init2
+│  │  │  └─ migration.sql
+│  │  ├─ 20241227051716_update_record
+│  │  │  └─ migration.sql
+│  │  └─ migration_lock.toml
+│  └─ schema.prisma
+├─ public
+│  ├─ images
+│  │  └─ logo-dlh.png
+│  ├─ next.svg
+│  └─ vercel.svg
+├─ README.md
+└─ tailwind.config.js
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+```
+persuratan-dlh
+├─ app
+│  ├─ api
+│  │  ├─ auth
+│  │  │  ├─ login
+│  │  │  │  └─ route.js
+│  │  │  ├─ logout
+│  │  │  │  └─ route.js
+│  │  │  ├─ me
+│  │  │  │  └─ route.js
+│  │  │  └─ register
+│  │  │     └─ route.js
+│  │  ├─ classifications
+│  │  │  └─ route.js
+│  │  └─ records
+│  │     ├─ route.js
+│  │     ├─ stats
+│  │     │  └─ route.js
+│  │     ├─ type
+│  │     │  └─ [documentType]
+│  │     │     └─ route.js
+│  │     └─ [id]
+│  │        └─ route.js
+│  ├─ auth
+│  │  └─ login
+│  │     └─ page.js
+│  ├─ components
+│  │  ├─ atoms
+│  │  │  ├─ Form
+│  │  │  │  ├─ DateInput.jsx
+│  │  │  │  ├─ DropdownInput.jsx
+│  │  │  │  ├─ SubmitButton.jsx
+│  │  │  │  └─ TextInput.jsx
+│  │  │  └─ Table
+│  │  │     ├─ TableCell.jsx
+│  │  │     └─ TableHeaderCell.jsx
+│  │  ├─ LoginForm.js
+│  │  ├─ molecules
+│  │  │  ├─ CardRecord.jsx
+│  │  │  ├─ ClassificationDropdown.jsx
+│  │  │  ├─ DeleteButton.jsx
+│  │  │  ├─ DocumentStatusChart.jsx
+│  │  │  ├─ EditButton.jsx
+│  │  │  ├─ FormGroup.jsx
+│  │  │  ├─ PaginationControls.jsx
+│  │  │  ├─ RecentActivity.jsx
+│  │  │  └─ TableRow.jsx
+│  │  ├─ organism
+│  │  │  ├─ PageHeader.jsx
+│  │  │  ├─ RecordForm.jsx
+│  │  │  └─ RecordsTable.jsx
+│  │  ├─ ProtectedRoute.js
+│  │  ├─ Register.js
+│  │  ├─ SideNavbar.js
+│  │  ├─ templates
+│  │  │  ├─ FormPageTemplate.jsx
+│  │  │  └─ RecordsPageTemplate.jsx
+│  │  └─ ToastProvider.jsx
+│  ├─ config
+│  │  └─ documentTypes.js
+│  ├─ dashboard
+│  │  ├─ beritaacara
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ layout.js
+│  │  ├─ page.js
+│  │  ├─ suratkeluar
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ suratketerangan
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ suratmasuk
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  ├─ surattugas
+│  │  │  ├─ create
+│  │  │  │  └─ page.js
+│  │  │  ├─ edit
+│  │  │  │  └─ [id]
+│  │  │  │     └─ page.js
+│  │  │  └─ page.js
+│  │  └─ [id]
+│  │     └─ page.jsx
+│  ├─ favicon.ico
+│  ├─ globals.css
+│  ├─ hooks
+│  │  ├─ useAuth.js
+│  │  └─ useCurrentUser.js
+│  ├─ layout.js
+│  ├─ lib
+│  │  ├─ formatDate.js
+│  │  ├─ middleware.js
+│  │  ├─ prisma.js
+│  │  └─ romanMonths.js
+│  ├─ page.js
+│  └─ protected
+│     └─ page.js
+├─ arsip-code_rows.csv
+├─ jsconfig.json
+├─ next.config.js
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.js
+├─ prisma
+│  ├─ migrations
+│  │  ├─ 20241224071150_init
+│  │  │  └─ migration.sql
+│  │  ├─ 20241224071326_init
+│  │  │  └─ migration.sql
+│  │  ├─ 20241224072128_init2
+│  │  │  └─ migration.sql
+│  │  ├─ 20241227051716_update_record
+│  │  │  └─ migration.sql
+│  │  ├─ 20250327182908_add_username_unique_constraint
+│  │  │  └─ migration.sql
+│  │  └─ migration_lock.toml
+│  └─ schema.prisma
+├─ public
+│  ├─ images
+│  │  └─ logo-dlh.png
+│  ├─ next.svg
+│  └─ vercel.svg
+├─ README.md
+└─ tailwind.config.js
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
