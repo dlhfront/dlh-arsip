@@ -8,9 +8,8 @@
   ],
   "build": {
     "env": {
-      "DATABASE_URL": "@database_url",
-      "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
-      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key"
+      "PRISMA_MIGRATION_ENGINE_BINARY": "node_modules/prisma/migration-engine-debian-openssl-1.1.x",
+      "PRISMA_QUERY_ENGINE_BINARY": "node_modules/prisma/query-engine-debian-openssl-1.1.x"
     }
   },
   "crons": [
