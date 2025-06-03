@@ -1,3 +1,4 @@
+// app/components/templates/RecordsPageTemplate.jsx
 'use client';
 import { useRouter } from 'next/navigation';
 import PageHeader from '../organism/PageHeader';
@@ -8,13 +9,16 @@ const RecordsPageTemplate = ({
   createLink,
   currentUser,
   columns,
-  documentType
+  documentType,
+  loading
 }) => {
   const router = useRouter();
 
   const handleRowClick = (recordId) => {
     router.push(`/dashboard/${recordId}`);
   };
+
+  if (loading) return <div className="p-4">Loading user data...</div>;
 
   return (
     <div className="p-4">

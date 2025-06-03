@@ -1,6 +1,6 @@
-'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
@@ -12,14 +12,14 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await fetch('/api/auth/me');
+        const res = await fetch("/api/auth/me");
         // console.log(res);
         if (!res.ok) throw new Error();
         const userData = await res.json();
         // console.log(userData);
         setUser(userData);
       } catch (error) {
-        router.push('/auth/login');
+        router.push("/auth/login");
       } finally {
         setLoading(false);
       }
@@ -31,7 +31,12 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     loading,
-    setUser
+    setUser,
+    logout: async () => {
+      await fetch("/api/auth/logout", { method: "POST" });
+      setUser(null);
+      router.push("/auth/login");
+    },
   };
 
   return (

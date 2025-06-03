@@ -7,18 +7,32 @@ import { DOCUMENT_TYPES } from "../../config/documentTypes";
 import ProtectedRoute from "../../components/ProtectedRoute";
 
 const SuratKeteranganPage = () => {
-  const { currentUser, loading } = useCurrentUser();
+  const { currentUser, loading: userLoading } = useCurrentUser();
   const [records, setRecords] = useState([]);
-
+  const [dataLoading, setDataLoading] = useState(true);
+  
   useEffect(() => {
     const fetchRecords = async () => {
-      const response = await fetch("/api/records/type/SURAT_KETERANGAN");
-      const data = await response.json();
-      setRecords(data);
+      try {
+        const response = await fetch("/api/records/type/SURAT_KETERANGAN");
+        if (!response.ok) throw new Error("Failed to fetch records");
+        const data = await response.json();
+        setRecords(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setDataLoading(false);
+      }
     };
 
-    fetchRecords();
-  }, []);
+    if (currentUser) {
+      fetchRecords();
+    }
+  }, [currentUser]);
+
+  if (userLoading || dataLoading) {
+    return <div className="p-4">Loading...</div>;
+  }
 
   return (
     <ProtectedRoute>
@@ -26,7 +40,7 @@ const SuratKeteranganPage = () => {
         {...DOCUMENT_TYPES.SURAT_KETERANGAN}
         records={records}
         currentUser={currentUser}
-        loading={loading}
+        loading={userLoading || dataLoading}
         documentType="SURAT_KETERANGAN"
       />
     </ProtectedRoute>

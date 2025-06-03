@@ -31,17 +31,16 @@ const FormPageTemplate = ({
 
   const handleSuccess = () => {
     router.push(`/dashboard/${documentType.toLowerCase().replace("_", "")}`);
-    // router.push(`/dashboard/${recordId}`);
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <PageHeader
-        title={`${recordId ? "Edit" : "Create New"} ${title}`}
+        title={`${recordId ? "Edit" : "Create New"} | ${title}`}
         backLink={`/dashboard/${documentType.toLowerCase().replace("_", "")}`}
       />
       
-      <div className="bg-white rounded-lg shadow p-6 mt-4">
+      <div className="bg-white rounded-lg shadow p-6 mt-4 w-1/2 ">
         <RecordForm
           documentType={documentType}
           recordId={recordId}

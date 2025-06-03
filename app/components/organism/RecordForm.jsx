@@ -106,7 +106,7 @@ const RecordForm = ({
       ))}
 
       <TextInput
-        label="Origin"
+        label="Asal"
         name="origin"
         value={formData.origin}
         onChange={handleInputChange}
@@ -114,7 +114,7 @@ const RecordForm = ({
       />
 
       <TextInput
-        label="Summary"
+        label="Ringkasan"
         name="summary"
         value={formData.summary}
         onChange={handleInputChange}
@@ -122,7 +122,7 @@ const RecordForm = ({
       />
 
       <DateInput
-        label="Date"
+        label="Tanggal"
         name="date"
         value={formData.date}
         onChange={handleInputChange}

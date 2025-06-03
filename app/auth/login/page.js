@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 const LoginPage = () => {
   const { user } = useAuth();
-  console.log(user);
   const router = useRouter();
 
   useEffect(() => {

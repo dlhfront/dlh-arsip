@@ -9,7 +9,7 @@ const PageHeader = ({
 }) => {
   return (
     <div className="flex justify-between items-center mb-6">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-4">
         {backLink && (
           <Link href={backLink} className="text-primary hover:text-primary/80">
             ← Back

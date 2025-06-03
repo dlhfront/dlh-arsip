@@ -7,29 +7,43 @@ import { DOCUMENT_TYPES } from "../../config/documentTypes";
 import ProtectedRoute from "@/app/components/ProtectedRoute";
 
 const BeritaAcaraPage = () => {
-  const { currentUser, loading } = useCurrentUser();
+  const { currentUser, loading: userLoading } = useCurrentUser();
   const [records, setRecords] = useState([]);
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const fetchRecords = async () => {
-      const response = await fetch("/api/records/type/BERITA_ACARA");
-      const data = await response.json();
-      setRecords(data);
+      try {
+        const response = await fetch("/api/records/type/BERITA_ACARA");
+        if (!response.ok) throw new Error("Failed to fetch records");
+        const data = await response.json();
+        setRecords(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setDataLoading(false);
+      }
     };
 
-    fetchRecords();
-  }, []);
+    if (currentUser) {
+      fetchRecords();
+    }
+  }, [currentUser]);
+
+  if (userLoading || dataLoading) {
+    return <div className="p-4">Loading...</div>;
+  }
 
   return (
     // <ProtectedRoute>
-      <RecordsPageTemplate
-        {...DOCUMENT_TYPES.BERITA_ACARA}
-        records={records}
-        currentUser={currentUser}
-        loading={loading}
-        documentType="BERITA_ACARA"
-        createLink={"/dashboard/beritaacara/create"}
-      />
+    <RecordsPageTemplate
+      {...DOCUMENT_TYPES.BERITA_ACARA}
+      records={records}
+      currentUser={currentUser}
+      loading={userLoading || dataLoading}
+      documentType="BERITA_ACARA"
+      createLink={"/dashboard/beritaacara/create"}
+    />
     // </ProtectedRoute>
   );
 };

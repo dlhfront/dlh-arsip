@@ -6,7 +6,7 @@ const RecordsLayout = ({ children }) => {
     <ProtectedRoute>
       <div className="flex w-full h-screen">
         <SideNavbar />
-        <div className="overflow-y-scroll">{children}</div>
+        <div className="overflow-y-scroll w-full">{children}</div>
       </div>
     </ProtectedRoute>
   );

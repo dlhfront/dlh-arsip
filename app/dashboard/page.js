@@ -42,17 +42,17 @@ const Dashboard = () => {
         {/* Welcome Message */}
         <div className="bg-white p-4 rounded-lg shadow">
           <h2 className="text-xl font-semibold">
-            Welcome back, {currentUser?.username || "User"}!
+            Selamat datang, {currentUser?.username || "User"}!
           </h2>
           <p className="text-gray-600">
-            Here's what's happening with your documents today
+            Di sini Anda dapat melihat statistik dan aktivitas terbaru.
           </p>
         </div>
 
         {/* Stats Cards */}
         <div>
           <h2 className="text-xl font-semibold mb-4 text-dark">
-            Document Summary
+            Statistik Arsip
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {stats.map((stat) => (

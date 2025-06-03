@@ -48,18 +48,22 @@ const TableRow = ({
       ))}
       <TableCell className="whitespace-nowrap">
         <div className="flex gap-2" data-no-row-click>
-          <EditButton
-            id={record.id}
-            userId={record.userId}
-            currentUserId={currentUser.id}
-            documentType={record.documentType}
-          />
-          <DeleteButton
-            id={record.id}
-            userId={record.userId}
-            currentUserId={currentUser.id}
-            onDeleteSuccess={handleDeleteSuccess}
-          />
+          {currentUser && (
+            <>
+              <EditButton
+                id={record.id}
+                userId={record.userId}
+                currentUserId={currentUser.id}
+                documentType={record.documentType}
+              />
+              <DeleteButton
+                id={record.id}
+                userId={record.userId}
+                currentUserId={currentUser.id}
+                onDeleteSuccess={handleDeleteSuccess}
+              />
+            </>
+          )}
         </div>
       </TableCell>
     </tr>

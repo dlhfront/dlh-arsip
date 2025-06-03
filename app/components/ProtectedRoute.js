@@ -13,8 +13,12 @@ export default function ProtectedRoute({ children }) {
     }
   }, [user, loading]);
 
-  if (loading || !user) {
+  if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return null; // or a loading spinner
   }
 
   return children;

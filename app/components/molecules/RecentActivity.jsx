@@ -4,7 +4,7 @@ import { FiFileText } from 'react-icons/fi';
 const RecentActivity = ({ records }) => {
   return (
     <div>
-      <h3 className="font-semibold text-lg mb-4">Recent Activity</h3>
+      <h3 className="font-semibold text-lg mb-4">Aktivitas Terbaru</h3>
       <div className="space-y-3">
         {records.map((record) => (
           <Link 
@@ -22,7 +22,7 @@ const RecentActivity = ({ records }) => {
           </Link>
         ))}
         {records.length === 0 && (
-          <p className="text-sm text-gray-500">No recent activity</p>
+          <p className="text-sm text-gray-500">Tidak ada aktivitas terbaru</p>
         )}
       </div>
     </div>

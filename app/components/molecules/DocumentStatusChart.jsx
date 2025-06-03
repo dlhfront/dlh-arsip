@@ -23,7 +23,7 @@ const DocumentStatusChart = ({ stats }) => {
 
   return (
     <div>
-      <h3 className="font-semibold text-lg mb-4">Document Distribution</h3>
+      <h3 className="font-semibold text-lg mb-4">Document Status</h3>
       <div className="h-64">
         <Pie data={data} options={{ responsive: true, maintainAspectRatio: false }} />
       </div>

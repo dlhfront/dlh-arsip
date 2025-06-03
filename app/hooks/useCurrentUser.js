@@ -1,25 +1,31 @@
+// app/hooks/useCurrentUser.js
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-const useCurrentUser  = () => {
-  const [currentUser , setCurrentUser ] = useState(null);
+const useCurrentUser = () => {
+  const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCurrentUser  = async () => {
-      const response = await fetch('/api/auth/me');
-      if (response.ok) {
+    const fetchCurrentUser = async () => {
+      try {
+        const response = await fetch('/api/auth/me');
+        if (!response.ok) {
+          throw new Error('Unauthorized');
+        }
         const userData = await response.json();
-        setCurrentUser (userData);
-      } else {
-        setCurrentUser (null);
+        setCurrentUser(userData);
+      } catch (error) {
+        setCurrentUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
-    fetchCurrentUser ();
+    fetchCurrentUser();
   }, []);
 
-  return { currentUser , loading };
+  return { currentUser, loading };
 };
 
-export default useCurrentUser ;
+export default useCurrentUser;

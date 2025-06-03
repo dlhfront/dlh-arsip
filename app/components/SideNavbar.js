@@ -8,20 +8,20 @@ const SideNavbar = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    try {
-      const response = await fetch('/api/auth/logout', {
-        method: 'POST',
-      });
+  try {
+    const response = await fetch('/api/auth/logout', {
+      method: 'POST',
+    });
 
-      if (response.ok) {
-        router.push('/auth/login');
-      } else {
-        console.error('Logout failed');
-      }
-    } catch (error) {
-      console.error('Logout error:', error);
+    if (response.ok) {
+      window.location.href = '/auth/login';
+    } else {
+      console.error('Logout failed');
     }
-  };
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+};
 
   return (
     <nav className="min-w-[18%] bg-light p-4 flex flex-col h-screen">
@@ -30,6 +30,11 @@ const SideNavbar = () => {
       </div>
 
       <ul className="flex flex-col justify-start flex-grow">
+        <li className="mb-1">
+          <Link href="/dashboard" className="block w-full text-base p-2 rounded-lg hover:bg-dark hover:text-primary transition-colors">
+            DASHBOARD
+          </Link>
+        </li>
         <li className="mb-1">
           <Link href="/dashboard/suratkeluar" className="block w-full text-base p-2 rounded-lg hover:bg-dark hover:text-primary transition-colors">
             SURAT KELUAR

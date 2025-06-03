@@ -16,7 +16,7 @@ export const DOCUMENT_TYPES = {
     createLink: "/dashboard/suratkeluar/create",
     columns: [
       { key: "serialNumber", title: "No. Surat" },
-      { key: "index", title: "Index" },
+      { key: "index", title: "Indek" },
       { key: "origin", title: "Asal" },
       { 
         key: "classification", 

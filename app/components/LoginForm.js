@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -11,10 +12,10 @@ const LoginForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const { setUser } = useAuth();
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -33,9 +34,9 @@ const LoginForm = () => {
       if (!response.ok) {
         throw new Error(data.error || "Login failed");
       }
-
-      toast.success("Login successful!");
+      setUser(data);
       router.push("/dashboard");
+      toast.success("Login successful!");
     } catch (err) {
       toast.error(err.message || "Login failed. Please try again.");
     } finally {
@@ -45,22 +46,13 @@ const LoginForm = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-gray-50 bg-[url(/images/logo-dlh.png)] bg-no-repeat bg-center bg-cover">
-      <div className="absolute w-full h-full bg-dark/70">
-
-      </div>
-      {/* <img src="/images/logo-dlh.png" alt="DLH Logo" className="absolute ">
-        
-      </img> */}
+      <div className="absolute w-full h-full bg-dark/70"></div>
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md z-10">
         <h1 className="flex flex-col text-2xl font-bold text-center text-dark mb-6">
-          <span>
-            Login
-          </span>
-          <span>
-            Persuratan DLH
-          </span>
+          <span>Login</span>
+          <span>Persuratan DLH</span>
         </h1>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
