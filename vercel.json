@@ -5,11 +5,5 @@
       "src": "package.json",
       "use": "@vercel/next"
     }
-  ],
-  "build": {
-    "env": {
-      "PRISMA_CLI_QUERY_ENGINE_TYPE": "library",
-      "PRISMA_GENERATE_DATAPROXY": "false"
-    }
-  }
+  ]
 }
