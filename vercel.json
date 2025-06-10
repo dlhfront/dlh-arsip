@@ -8,8 +8,9 @@
   ],
   "build": {
     "env": {
-      "PRISMA_GENERATE_DATAPROXY": "false",
-      "PRISMA_CLI_QUERY_ENGINE_TYPE": "library"
+      "PRISMA_CLI_QUERY_ENGINE_TYPE": "library",
+      "PRISMA_SCHEMA_ENGINE_BINARY": "./node_modules/prisma/schema-engine-debian-openssl-3.0.x",
+      "PRISMA_QUERY_ENGINE_LIBRARY": "./node_modules/prisma/libquery_engine-debian-openssl-3.0.x.so.node"
     }
   }
 }
