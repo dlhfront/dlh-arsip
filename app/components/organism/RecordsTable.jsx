@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import TableHeaderCell from '../atoms/Table/TableHeaderCell';
 import TableRow from '../molecules/TableRow';
@@ -9,50 +8,14 @@ const RecordsTable = ({
   documentType,
   currentUser,
   columns,
-  onRowClick // Keep the row click handler
+  records,
+  loading,
+  pagination,
+  onPageChange,
+  onRowClick
 }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState({
-    page: 1,
-    limit: 10,
-    total: 0,
-    totalPages: 1
-  });
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(
-        `/api/records?type=${documentType}&page=${pagination.page}&limit=${pagination.limit}`
-      );
-      const response = await res.json();
-      
-      if (!res.ok) throw new Error(response.error || 'Failed to fetch data');
-      
-      setData(response.data || []);
-      setPagination(prev => ({
-        ...prev,
-        total: response.pagination?.total || 0,
-        totalPages: response.pagination?.totalPages || 1
-      }));
-    } catch (error) {
-      console.error('Fetch error:', error);
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [pagination.page, documentType]);
-
-  const handlePageChange = (newPage) => {
-    setPagination(prev => ({ ...prev, page: newPage }));
-  };
-
   if (loading) return <div className="p-4">Loading...</div>;
+  if (!loading && records.length === 0) return <div className="p-4">No records found</div>;
 
   return (
     <div className="p-4">
@@ -69,7 +32,7 @@ const RecordsTable = ({
             </tr>
           </thead>
           <tbody>
-            {data.map((record) => (
+            {records.map((record) => (
               <TableRow
                 key={record.id}
                 record={record}
@@ -83,11 +46,14 @@ const RecordsTable = ({
         </table>
       </div>
       
-      <PaginationControls
-        currentPage={pagination.page}
-        totalPages={pagination.totalPages}
-        onPageChange={handlePageChange}
-      />
+      {pagination.totalPages > 1 && (
+        <PaginationControls
+          currentPage={pagination.page}
+          totalPages={pagination.totalPages}
+          onPageChange={onPageChange}
+          loading={loading}
+        />
+      )}
     </div>
   );
 };

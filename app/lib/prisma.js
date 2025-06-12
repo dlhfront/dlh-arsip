@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
   prisma = global.prisma;
 }
 
-// Immediate connection test - keep this for debugging
+// Immediate connection test - keep this for debugging 
 prisma.$connect()
   .then(() => console.log('Prisma connected to:', process.env.DATABASE_URL?.split('@')[1]))
   .catch(err => {
